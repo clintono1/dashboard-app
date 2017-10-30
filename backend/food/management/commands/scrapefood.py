@@ -5,6 +5,7 @@ import urllib
 import json
 import re
 import nltk
+import html
 
 class Command(BaseCommand):
     help = 'Scrapes food from Food2Fork'
@@ -57,9 +58,8 @@ class Command(BaseCommand):
                         i = i.replace(word+"s",'')
                         i = i.replace(word,'')
 
-                    # Remove weirdness
-                    i = i.replace("&amp;", '&')
-                    i = i.replace("&nbsp;", ' ')
+                    #convert named and numeric character refrences 
+                    html.unescape(i)
 
                     # Remove leading whitespace
                     i = i.lstrip()
@@ -78,15 +78,6 @@ class Command(BaseCommand):
                     s = i.split(',')
                     i = s[0]
                     
-                    # Remove anything between '&' and ';'
-                    ampPos = i.find('&')
-                    while ampPos!=-1:
-                        semiColonPos = i.find(';')
-                        if semiColonPos!=-1:
-                            i = i[:ampPos] + i[semiColonPos+1:]
-                        else:
-                            break # Probably supposed to be there
-
                     # Remove anything not a noun
                     tokens = nltk.word_tokenize(i)
                     tags = nltk.pos_tag(tokens)
