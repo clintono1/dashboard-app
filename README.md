@@ -1,5 +1,4 @@
 ## Who's Hungry?
-##I'M Hungry For A Grade Increase So Hold It Down!
 
 #### This app is hosted on http://app.whoshungry.io/ or you can run it locally using the following instructions.
 
