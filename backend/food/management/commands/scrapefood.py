@@ -59,7 +59,7 @@ class Command(BaseCommand):
                         i = i.replace(word,'')
 
                     #convert named and numeric character refrences 
-                    html.unescape(i)
+                    i = html.unescape(i)
 
                     # Remove leading whitespace
                     i = i.lstrip()
